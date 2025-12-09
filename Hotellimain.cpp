@@ -102,6 +102,8 @@ int main(){ // Ohjelman runko
         return(0);
     } else if (user_input == 1)
     {
+        bool reservation_state;
+        string reservation_fill;
         int rooms_amount = 0;
 
         do // Lue huoneita 40-300, kuitenkin sellaisen määrän, että se on parillinen määrä
@@ -113,7 +115,15 @@ int main(){ // Ohjelman runko
 
         for (int i = 1; i < single_rooms; i++)
         {
-            room a {i, 0, truefalse_generator(0,1), 0, "Unknown"};
+            reservation_state = truefalse_generator(0,1);
+            if (reservation_state==0)
+            {
+                reservation_fill = "Unreserved";
+            }else if (reservation_state==1)
+            {
+                reservation_fill = "Reserved";
+            }
+            room a {i, 0, reservation_state, 0, reservation_fill};
             rooms.push_back(a);
         }
 
@@ -121,7 +131,15 @@ int main(){ // Ohjelman runko
 
         for (int i = rooms_amount/2; i < rooms_amount; i++)
         {
-            room a {i, 1, truefalse_generator(0,1), 0, "Unknown"};
+            reservation_state = truefalse_generator(0,1);
+            if (reservation_state==0)
+            {
+                reservation_fill = "Unreserved";
+            }else if (reservation_state==1)
+            {
+                reservation_fill = "Reserved";
+            }
+            room a {i, 1, reservation_state, 0, reservation_fill};
             rooms.push_back(a);
         }
     }
